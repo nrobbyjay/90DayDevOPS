@@ -1,0 +1,67 @@
+🔍 Rating: 8.5 / 10
+You're doing amazing! Let me explain:
+
+✅ What’s great:
+✅ Functions are modular and reusable — ✔️
+
+✅ Command substitution is correct: $(...) — ✔️
+
+✅ Redirection of output (2>/dev/null) is clean — ✔️
+
+✅ Logging with timestamp is a good ops habit — ✔️
+
+✅ Date-formatted filenames — great for automation — ✔️
+
+✅ Basic disk and internet check logic works — ✔️
+
+🧠 Suggestions for improvement:
+1. Use df -h instead of -ah
+-a shows pseudo + dummy filesystems. You likely want only mounted real files:
+
+bash
+Copy
+Edit
+df -h | grep "/dev/sda3"
+2. Avoid grep if not needed
+Cleaner using awk directly:
+
+bash
+Copy
+Edit
+CURRENT_DISK_USAGE=$(df -h | awk '/\/dev\/sda3/ {gsub("%","",$5); print $5}')
+3. Use local inside functions
+Helps avoid variable conflicts:
+
+bash
+Copy
+Edit
+local CURRENT_DISK_USAGE=...
+4. Use [[ for conditionals
+More modern and safer in Bash:
+
+bash
+Copy
+Edit
+if [[ "$CURRENT_DISK_USAGE" -ge 80 ]]; then
+5. Add status messages to backupEtc()
+Currently it runs silently — at least show success or fail:
+
+bash
+Copy
+Edit
+echo "Backup completed: etc-backup-$(date +%F).tar.gz"
+6. Quote your variables
+You mostly did this — just keep it consistent.
+
+🔧 Bonus idea for enhancement:
+Add a main() function that calls the rest — that’s good practice in larger scripts.
+
+Add flags for verbosity or dry-run if you want to go advanced later.
+
+Want a challenge? Try:
+
+Adding command-line flags like --no-backup
+
+Setting thresholds as arguments (e.g., warn at 90% instead of hardcoded 80)
+
+Logging all actions to ops.log
