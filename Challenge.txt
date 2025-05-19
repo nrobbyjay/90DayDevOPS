@@ -1,0 +1,67 @@
+🔥 Let’s roll into **Day 5** of your **90-Day DevOps Challenge** — today, we level up your Bash and system-level skills by **writing useful scripts** and interacting with system processes.
+
+---
+
+## ✅ **Day 5 - Process Monitoring & System Reporting**
+
+### 🏁 Goal: Learn how to **monitor system resources**, write Bash scripts that use `ps`, `top`, `uptime`, `free`, and `df`, and create **a basic system report tool**.
+
+---
+
+## 📋 Goals:
+
+* Understand how to use core monitoring commands: `top`, `htop`, `ps`, `uptime`, `free`, `df`
+* Write a script that:
+
+  * Monitors system uptime
+  * Displays memory usage
+  * Shows CPU and disk usage
+* Redirect output into a log file
+* Learn about `cron` (intro only) to automate this in the future
+
+---
+
+## 🔧 Suggested Activity:
+
+### ✅ **Challenge**: Create a script called `sysreport.sh` that:
+
+1. Outputs the current time and hostname
+2. Shows:
+
+   * System uptime
+   * Current CPU usage
+   * Memory usage
+   * Disk usage (specifically root partition `/`)
+3. Logs everything to a file `system_report.log`
+
+📌 Don't just echo text. Use commands like:
+
+* `uptime`
+* `top -bn1 | grep "Cpu(s)"`
+* `free -h`
+* `df -h /`
+
+---
+
+## 🧠 Hints (but no answers unless you ask 😉):
+
+* `top` with `-bn1` can give you CPU usage in one go
+* Use `awk` or `cut` to extract specific values
+* `>>` is how you **append to logs**
+* You can use `date` to print the current timestamp
+
+---
+
+## 🚀 Bonus Challenge:
+
+* Add a feature to detect if memory usage is **above 80%**
+* Add a warning log if it is
+
+---
+
+## 💥 Ultimate Test:
+
+Once your script is working, **run it and check the log output**. Can you read your report? Does it look organized?
+
+Let me know once you’re done or if you want your code reviewed when complete.
+Ready to try it?
